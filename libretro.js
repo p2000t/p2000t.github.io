@@ -10,8 +10,7 @@ var setImmediate;
 
 var Module = {
    noInitialRun: true,
-   arguments: ["-v", "--menu"],
-
+   //arguments: ["-v", "--menu"],
    encoder: new TextEncoder(),
    message_queue:[],
    message_out:[],
@@ -167,6 +166,10 @@ function appInitialized()
      {
          setupFileSystem("browser");
          preLoadingComplete();
+         
+         // Copy the retroarch.cfg file to the user data directory.
+         var data = Module.FS.readFile("/home/web_user/retroarch/userdata/content/downloads/retroarch.cfg");
+         Module.FS.writeFile('/home/web_user/retroarch/userdata/retroarch.cfg', data);
      }
  }
 
@@ -174,7 +177,10 @@ function preLoadingComplete()
 {
    /* Make the Preview image clickable to start RetroArch. */
    $('.webplayer-preview').addClass('loaded').click(function () {
-      startRetroArch();
+      startRetroArch(this.id);
+      //make fullscreen
+      Module.requestFullscreen(false);
+      Module['canvas'].focus();
       return false;
   });
   document.getElementById("btnRun").disabled = false;
@@ -242,7 +248,7 @@ function getParam(name) {
   }
 }
 
-function startRetroArch()
+function startRetroArch(casFile)
 {
    $('.webplayer').show();
    $('.webplayer-preview').hide();
@@ -258,9 +264,11 @@ function startRetroArch()
    document.getElementById("btnMenu").disabled = false;
    document.getElementById("btnFullscreen").disabled = false;
 
-    Module["canvas"] = document.getElementById("canvas");
-    Module["canvas"].addEventListener("click", () => Module["canvas"].focus());
-   Module['callMain'](Module['arguments']);
+   Module["canvas"] = document.getElementById("canvas");
+   Module["canvas"].addEventListener("click", () => Module["canvas"].focus());
+   //Module['callMain'](Module['arguments']);
+   Module['callMain'](["-v", "/home/web_user/retroarch/userdata/content/downloads/" + casFile]);
+
    Module['resumeMainLoop']();
    Module['canvas'].focus();
 }
@@ -320,7 +328,8 @@ $(function() {
    });
 
    // Allow hiding the top menu.
-   $('.showMenu').hide();
+   //$('.showMenu').hide();
+   $('nav').hide();
    $('#btnHideMenu, .showMenu').click(function () {
       $('nav').slideToggle('slow');
       $('.showMenu').toggle('slow');
