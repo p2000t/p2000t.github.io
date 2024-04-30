@@ -254,6 +254,7 @@ function getParam(name) {
 
 function startRetroArch(casFile)
 {
+   $('#directPlay').hide();
    $('.webplayer').show();
    $('.webplayer-preview').hide();
    document.getElementById("btnRun").disabled = true;
