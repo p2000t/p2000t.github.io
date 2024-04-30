@@ -167,9 +167,13 @@ function appInitialized()
          setupFileSystem("browser");
          preLoadingComplete();
          
-         // Copy the retroarch.cfg file to the user data directory.
-         var data = Module.FS.readFile("/home/web_user/retroarch/userdata/content/downloads/retroarch.cfg");
-         Module.FS.writeFile('/home/web_user/retroarch/userdata/retroarch.cfg', data);
+         // init retroarch.cfg
+         try {
+            Module.FS.readFile("/home/web_user/retroarch/userdata/retroarch.cfg");
+         } catch (e) {
+            console.log('> retroarch.cfg not found, creating initial one...');
+            Module.FS.writeFile('/home/web_user/retroarch/userdata/retroarch.cfg', 'input_auto_game_focus = "2"\nvideo_font_enable = "false"');
+         }
      }
  }
 
@@ -179,8 +183,8 @@ function preLoadingComplete()
    $('.webplayer-preview').addClass('loaded').click(function () {
       startRetroArch(this.id);
       //make fullscreen
-      Module.requestFullscreen(false);
-      Module['canvas'].focus();
+      // Module.requestFullscreen(false);
+      // Module['canvas'].focus();
       return false;
   });
   document.getElementById("btnRun").disabled = false;
@@ -255,13 +259,13 @@ function startRetroArch(casFile)
    document.getElementById("btnRun").disabled = true;
 
    $('#btnFullscreen').removeClass('disabled');
-   $('#btnMenu').removeClass('disabled');
+   //$('#btnMenu').removeClass('disabled');
    $('#btnAdd').removeClass('disabled');
    $('#btnRom').removeClass('disabled');
 
    document.getElementById("btnAdd").disabled = false;
    document.getElementById("btnRom").disabled = false;
-   document.getElementById("btnMenu").disabled = false;
+   //document.getElementById("btnMenu").disabled = false;
    document.getElementById("btnFullscreen").disabled = false;
 
    Module["canvas"] = document.getElementById("canvas");
@@ -331,8 +335,8 @@ $(function() {
    });
 
    // Allow hiding the top menu.
-   //$('.showMenu').hide();
-   $('nav').hide();
+   $('.showMenu').hide();
+   //$('nav').hide();
    $('#btnHideMenu, .showMenu').click(function () {
       $('nav').slideToggle('slow');
       $('.showMenu').toggle('slow');
@@ -374,11 +378,12 @@ $(function() {
       }
    });
 
-   // Switch the core when selecting one.
-   $('#core-selector a').click(function () {
-      var coreChoice = $(this).data('core');
-      switchCore(coreChoice);
-   });
+   // // Switch the core when selecting one.
+   // $('#core-selector a').click(function () {
+   //    var coreChoice = $(this).data('core');
+   //    switchCore(coreChoice);
+   // });
+
    // Find which core to load.
    var core = localStorage.getItem("core", core);
    if (!core) {
@@ -390,15 +395,15 @@ $(function() {
 function loadCore(core) {
    // Make the core the selected core in the UI.
    var coreTitle = $('#core-selector a[data-core="' + core + '"]').addClass('active').text();
-   $('#dropdownMenu1').text(coreTitle);
+   //$('#dropdownMenu1').text(coreTitle);
    // Load the Core's related JavaScript.
     import("./"+core+"_libretro.js").then(script => {
        script.default(Module).then(mod => {
          Module = mod;
          $('#icnRun').removeClass('fa-spinner').removeClass('fa-spin');
          $('#icnRun').addClass('fa-play');
-         $('#lblDrop').removeClass('active');
-         $('#lblLocal').addClass('active');
+         // $('#lblDrop').removeClass('active');
+         // $('#lblLocal').addClass('active');
          idbfsInit();
          zipfsInit();
       }).catch(err => { console.error("Couldn't instantiate module",err); throw err; });

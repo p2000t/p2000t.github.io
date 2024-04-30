@@ -24,6 +24,7 @@
   -webkit-animation: loading 0.8s ease-in-out infinite alternate;
   -moz-animation: loading 0.8s ease-in-out infinite alternate;
   animation: loading 0.8s ease-in-out infinite alternate;
+  border: 3px solid #777;
 }
 .webplayer-preview.loaded {
   cursor: pointer;

@@ -25,12 +25,12 @@
                <ul class="nav navbar-nav">
                   <div class="dropdown">
                   <li class="nav-item dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Core Selection</button>
+                        <!-- <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Core Selection</button>
                         <div class="dropdown-menu dropdown-primary" aria-labelledby="dropdownMenu1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" id="core-selector">
                            <a class="dropdown-item" href="." data-core="m2000">Philips - P2000T</a>
-                        </div>
-                        <button class="btn btn-primary disabled" id="btnRun" onclick="startRetroArch();Module.requestFullscreen(false);Module['canvas'].focus();" disabled>
-                           <span class="fa fa-spinner fa-spin" id="icnRun"></span> Run
+                        </div> -->
+                        <button class="btn btn-primary disabled" id="btnRun" onclick="$('#directPlay').hide();startRetroArch()" disabled>
+                           <span class="fa fa-spinner fa-spin" id="icnRun"></span> Start RetroArch + P2000T emulator
                         </button>
                         <button class="btn btn-primary disabled" id="btnAdd" onclick="document.getElementById('btnRom').click()" disabled>
                            <span class="fa fa-plus" id="icnAdd"></span> Add Content
@@ -39,14 +39,14 @@
                            <span class="fa fa-trash-o" id="icnClean"></span> <span class="sr-only">Cleanup</span>
                         </button>
                         <input class="btn btn-primary disabled" style="display: none" type="file" id="btnRom" name="upload" onclick="document.getElementById('btnAdd').click();" onchange="selectFiles(event.target.files)" multiple />
-                        <button class="btn btn-primary disabled tooltip-enable" id="btnMenu" onclick="keyPress('F1');" title="Menu toggle" disabled>
+                        <!-- <button class="btn btn-primary disabled tooltip-enable" id="btnMenu" onclick="keyPress('F1');" title="Menu toggle" disabled>
                            <span class="fa fa-bars" id="btnMenu"></span> <span class="sr-only">Menu</span>
-                        </button>
+                        </button> -->
                         <button class="btn btn-primary disabled tooltip-enable" id="btnFullscreen" onclick="Module.requestFullscreen(false)" title="Fullscreen" disabled>
                            <span class="fa fa-desktop" id="icnAdd"></span> <span class="sr-only">Fullscreen</span>
                         </button>
                         </button>
-                        <button type="button" class="btn btn-primary tooltip-enable" data-toggle="modal" data-target="#helpModal">Help</button>
+                        <!-- <button type="button" class="btn btn-primary tooltip-enable" data-toggle="modal" data-target="#helpModal">Help</button> -->
                    </li>
                 </div>
                </ul>
@@ -104,16 +104,19 @@
              </button>
           </div>
           <hr/>
-          <div class="alert alert-primary" style="color:white">
-            <h4>Klik op één van de onderstaande P2000T games om deze direct te spelen in je browser!</h4>
+          <div class="alert alert-primary" style="color:lightblue" id="directPlay">
+            <h2 style="color:white">Online Philips P2000T emulator</h2>
             <hr/>
-            F1 = &lt;START&gt; &nbsp;&nbsp;|&nbsp;&nbsp; F2 = &lt;STOP&gt; &nbsp;&nbsp;|&nbsp;&nbsp; F3 = &lt;ZOEK&gt;
+            Click the "&#9654; Start RetroArch" button or click one of the P2000T games below to play them directly in your browser using Gamepad and/or Keyboard!
+            <hr/>
+            Gamepad Left trigger/bumper = On-Screen Key Selector &nbsp;&nbsp;|&nbsp;&nbsp; F1 = &lt;START&gt; key &nbsp;&nbsp;|&nbsp;&nbsp; F2 = &lt;STOP&gt; key &nbsp;&nbsp;|&nbsp;&nbsp; F3 = &lt;ZOEK&gt; key &nbsp;&nbsp;|&nbsp;&nbsp; Esc = Show Mousecursor
           </div>
-          <hr/>
           <canvas class="webplayer" id="canvas" tabindex="1" oncontextmenu="event.preventDefault()" style="display: none"></canvas>
           <!-- <img class="webplayer-preview img-fluid" src="media/canvas.png" width="960px" height="720px" alt="RetroArch Logo"> -->
-          <img class="webplayer-preview" id="Ghosthunt.cas" src="media/Ghosthunt.png" width="640px" height="480px" alt="Ghosthunt">
-          <img class="webplayer-preview" id="Fraxxon.cas" src="media/Fraxxon.png" width="640px" height="480px" alt="Fraxxon">
+          <img class="webplayer-preview" id="Brick-Wall.cas" src="media/Brick-Wall.png" width="320px" alt="Brick-Wall">
+          <img class="webplayer-preview" id="Fraxxon.cas" src="media/Fraxxon.png" width="320px" alt="Fraxxon">
+          <img class="webplayer-preview" id="Ghosthunt.cas" src="media/Ghosthunt.png" width="320px" alt="Ghosthunt">
+          <img class="webplayer-preview" id="Lazy Bug.cas" src="media/Lazy Bug.png" width="320px" alt="Lazy Bug">
       </div>
    </div>
 
