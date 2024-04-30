@@ -267,7 +267,10 @@ function startRetroArch(casFile)
    Module["canvas"] = document.getElementById("canvas");
    Module["canvas"].addEventListener("click", () => Module["canvas"].focus());
    //Module['callMain'](Module['arguments']);
-   Module['callMain'](["-v", "/home/web_user/retroarch/userdata/content/downloads/" + casFile]);
+   if (casFile != null)
+      Module['callMain'](["-v", "/home/web_user/retroarch/userdata/content/downloads/" + casFile]);
+   else
+      Module['callMain'](["-v", "--menu"]);
 
    Module['resumeMainLoop']();
    Module['canvas'].focus();

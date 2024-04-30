@@ -29,7 +29,7 @@
                         <div class="dropdown-menu dropdown-primary" aria-labelledby="dropdownMenu1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" id="core-selector">
                            <a class="dropdown-item" href="." data-core="m2000">Philips - P2000T</a>
                         </div>
-                        <button class="btn btn-primary disabled" id="btnRun" onclick="startRetroArch()" disabled>
+                        <button class="btn btn-primary disabled" id="btnRun" onclick="startRetroArch();Module.requestFullscreen(false);Module['canvas'].focus();" disabled>
                            <span class="fa fa-spinner fa-spin" id="icnRun"></span> Run
                         </button>
                         <button class="btn btn-primary disabled" id="btnAdd" onclick="document.getElementById('btnRom').click()" disabled>
