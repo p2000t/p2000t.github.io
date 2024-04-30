@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
    <meta charset="utf-8">
-   <title>RetroArch Web Player</title>
+   <title>Philips P2000T Web Player</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <!-- Bootstrap core CSS -->
    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -30,7 +30,7 @@
                            <a class="dropdown-item" href="." data-core="m2000">Philips - P2000T</a>
                         </div> -->
                         <button class="btn btn-primary disabled" id="btnRun" onclick="$('#directPlay').hide();startRetroArch()" disabled>
-                           <span class="fa fa-spinner fa-spin" id="icnRun"></span> Start RetroArch + P2000T emulator
+                           <span class="fa fa-spinner fa-spin" id="icnRun"></span> Start RetroArch Web Player
                         </button>
                         <button class="btn btn-primary disabled" id="btnAdd" onclick="document.getElementById('btnRom').click()" disabled>
                            <span class="fa fa-plus" id="icnAdd"></span> Add Content
@@ -105,11 +105,11 @@
           </div>
           <hr/>
           <div class="alert alert-primary" style="color:lightblue" id="directPlay">
-            <h2 style="color:white">Online Philips P2000T emulator</h2>
+            <h2 style="color:white">Philips P2000T Web Player</h2>
             <hr/>
-            Click the "&#9654; Start RetroArch" button or click one of the P2000T games below to play them directly in your browser using Gamepad and/or Keyboard!
+            Click the "&#9654; Start RetroArch" button or click one of the P2000T games below to play them directly in your browser using a Gamepad and/or Keyboard!
             <hr/>
-            Gamepad Left trigger/bumper = On-Screen Key Selector &nbsp;&nbsp;|&nbsp;&nbsp; F1 = &lt;START&gt; key &nbsp;&nbsp;|&nbsp;&nbsp; F2 = &lt;STOP&gt; key &nbsp;&nbsp;|&nbsp;&nbsp; F3 = &lt;ZOEK&gt; key &nbsp;&nbsp;|&nbsp;&nbsp; Esc = Show Mousecursor
+            Gamepad Left Trigger = On-Screen Key Selector &nbsp;&nbsp;|&nbsp;&nbsp; F1 = &lt;START&gt; key &nbsp;&nbsp;|&nbsp;&nbsp; F2 = &lt;STOP&gt; key &nbsp;&nbsp;|&nbsp;&nbsp; F3 = &lt;ZOEK&gt; key &nbsp;&nbsp;|&nbsp;&nbsp; Esc = Show Mousecursor
           </div>
           <canvas class="webplayer" id="canvas" tabindex="1" oncontextmenu="event.preventDefault()" style="display: none"></canvas>
           <!-- <img class="webplayer-preview img-fluid" src="media/canvas.png" width="960px" height="720px" alt="RetroArch Logo"> -->
