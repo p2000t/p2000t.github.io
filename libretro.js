@@ -180,6 +180,7 @@ function appInitialized()
 function preLoadingComplete()
 {
    $("#holdon").hide();
+   $("#allready").show();
    /* Make the Preview image clickable to start RetroArch. */
    $('.webplayer-preview').addClass('loaded').click(function () {
       startRetroArch(this.id);
@@ -255,8 +256,8 @@ function getParam(name) {
 
 function startRetroArch(casFile)
 {
-   $('#directPlay').hide();
-   $('.webplayer').show();
+   $('#heading_line1,#heading_line2').hide();
+   $('.webplayer,#p2000t_help').show();
    $('.webplayer-preview').hide();
    document.getElementById("btnRun").disabled = true;
 
