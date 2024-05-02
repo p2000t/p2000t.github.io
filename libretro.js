@@ -111,8 +111,8 @@ function cleanupStorage()
 
 function idbfsInit()
 {
-   $('#icnLocal').removeClass('fa-globe');
-   $('#icnLocal').addClass('fa-spinner fa-spin');
+   //$('#icnLocal').removeClass('fa-globe');
+   //$('#icnLocal').addClass('fa-spinner fa-spin');
    var imfs = new BrowserFS.FileSystem.InMemory();
    if (BrowserFS.FileSystem.IndexedDB.isAvailable())
    {
@@ -150,8 +150,8 @@ function idbfsInit()
 
 function idbfsSyncComplete()
 {
-   $('#icnLocal').removeClass('fa-spinner').removeClass('fa-spin');
-   $('#icnLocal').addClass('fa-check');
+   //$('#icnLocal').removeClass('fa-spinner').removeClass('fa-spin');
+   //$('#icnLocal').addClass('fa-check');
    console.log("WEBPLAYER: idbfs setup successful");
 
    appInitialized();
@@ -179,6 +179,7 @@ function appInitialized()
 
 function preLoadingComplete()
 {
+   $("#holdon").hide();
    /* Make the Preview image clickable to start RetroArch. */
    $('.webplayer-preview').addClass('loaded').click(function () {
       startRetroArch(this.id);
