@@ -19,7 +19,7 @@
 .webplayer-preview {
   margin: 4px 2px;
   cursor: wait;
-  opacity: 0.4;
+  opacity: 0.3;
   transition: all 0.8s;
   -webkit-animation: loading 0.8s ease-in-out infinite alternate;
   -moz-animation: loading 0.8s ease-in-out infinite alternate;
@@ -36,7 +36,7 @@
 }
 @keyframes loaded {
   from {
-    opacity: 0.4;
+    opacity: 0.3;
   }
   to {
     opacity: 1;
@@ -44,7 +44,7 @@
 }
 @-moz-keyframes loaded {
   from {
-    opacity: 0.4;
+    opacity: 0.3;
   }
   to {
     opacity: 1;
@@ -52,7 +52,7 @@
 }
 @-webkit-keyframes loaded {
   from {
-    opacity: 0.4;
+    opacity: 0.3;
   }
   to {
     opacity: 1;
@@ -60,26 +60,26 @@
 }
 @keyframes loading{
   from {
-    opacity: 0.4;
+    opacity: 0.3;
   }
   to {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 }
 @-moz-keyframes loading{
   from {
-    opacity: 0.4;
+    opacity: 0.3;
   }
   to {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 }
 @-webkit-keyframes loading {
   from {
-    opacity: 0.4;
+    opacity: 0.3;
   }
   to {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 }
 
