@@ -24,7 +24,6 @@
   -webkit-animation: loading 0.8s ease-in-out infinite alternate;
   -moz-animation: loading 0.8s ease-in-out infinite alternate;
   animation: loading 0.8s ease-in-out infinite alternate;
-  border: 3px solid #777;
 }
 .webplayer-preview.loaded {
   cursor: pointer;
@@ -32,6 +31,7 @@
   -webkit-animation: loaded 0.8s ease-in-out;
   -moz-animation: loaded 0.8s ease-in-out;
   animation: loaded 0.8s ease-in-out;
+  border: 3px solid #777;
 }
 @keyframes loaded {
   from {
