@@ -19,7 +19,7 @@
 .webplayer-preview {
   margin: 4px 2px;
   cursor: wait;
-  opacity: 0.2;
+  opacity: 0.5;
   transition: all 0.8s;
   -webkit-animation: loading 0.8s ease-in-out infinite alternate;
   -moz-animation: loading 0.8s ease-in-out infinite alternate;
