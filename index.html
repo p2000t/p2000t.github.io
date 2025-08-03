@@ -108,26 +108,42 @@
             <h2 style="font-weight: bold">Philips P2000T Web Player <small><small>(using the <a href="https://github.com/p2000t/M2000">M2000</a> emulator)</small></small></h2>
           </div>
           <div class="alert alert-primary" id="heading_line2">
-            <span id="allready" style="display:none;color:white;font-size:larger;">Click one of the P2000T games below to play them directly in your browser using a gamepad and/or keyboard.</span>
+            <span id="allready" style="display:none;color:white;font-size:larger;">
+               <script>
+                  const urlParams = new URLSearchParams(window.location.search);
+                  document.write(urlParams.has('cas') 
+                     ? 'Click the image below to run the program'
+                     : 'Click one of the P2000T games below to play them directly in your browser using a gamepad and/or keyboard'
+                  );
+               </script>
+            </span>
             <span id="holdon" class="webplayer-preview" style="color: yellow;font-size:larger;"><br/>... loading, please hold on ...</span>
           </div>
           <div class="alert alert-primary" style="color:lightblue;display:none;" id="p2000t_help">
             &#9432;&nbsp;&nbsp; F1 = &lt;START&gt; key &nbsp;&nbsp;|&nbsp;&nbsp; F2 = &lt;STOP&gt; key &nbsp;&nbsp;|&nbsp;&nbsp; F3 = &lt;ZOEK&gt; key &nbsp;&nbsp;|&nbsp;&nbsp; Esc = Show mouse pointer
           </div>
           <canvas class="webplayer" id="canvas" tabindex="1" oncontextmenu="event.preventDefault()" style="display: none"></canvas>
-          <!-- <img class="webplayer-preview img-fluid" src="media/canvas.png" width="960px" height="720px" alt="RetroArch Logo"> -->
-          <img class="webplayer-preview" id="Brick-Wall.cas" src="media/Brick-Wall.png" width="320px" alt="Brick-Wall">
-          <img class="webplayer-preview" id="Fraxxon.cas" src="media/Fraxxon.png" width="320px" alt="Fraxxon">
-          <img class="webplayer-preview" id="Ghosthunt.cas" src="media/Ghosthunt.png" width="320px" alt="Ghosthunt">
-          <img class="webplayer-preview" id="Lazy Bug.cas" src="media/Lazy Bug.png" width="320px" alt="Lazy Bug">
-          <img class="webplayer-preview" id="Vier op een rij.cas" src="media/Vier op een rij.png" width="320px" alt="Vier op een rij">
-          <img class="webplayer-preview" id="Androiden Nim.cas" src="media/Androiden Nim.png" width="320px" alt="Androiden Nim">
-          <img class="webplayer-preview" id="Tempo Typen.cas" src="media/Tempo Typen.png" width="320px" alt="Tempo Typen">
-          <img class="webplayer-preview" id="Tetris.cas" src="media/Tetris.png" width="320px" alt="Tetris">
-          <img class="webplayer-preview" id="U Hangt.cas" src="media/U Hangt.png" width="320px" alt="U Hangt">
-          <img class="webplayer-preview" id="Computer Jackpot.cas" src="media/Computer Jackpot.png" width="320px" alt="Computer Jackpot">
-          <img class="webplayer-preview" id="Doolhof.cas" src="media/Doolhof.png" width="320px" alt="Doolhof">
-          <img class="webplayer-preview" id="Macho Man.cas" src="media/Macho Man.png" width="320px" alt="Macho Man">
+          <script>
+            //const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('cas')) {
+              document.write(`<img class="webplayer-preview" id="${urlParams.get('cas')}" src="${urlParams.get('img') || 'media/canvas.png'}" width="640px">`);
+            } else {
+              document.write(`
+                <img class="webplayer-preview" id="Brick-Wall.cas" src="media/Brick-Wall.png" width="320px" alt="Brick-Wall">
+                <img class="webplayer-preview" id="Fraxxon.cas" src="media/Fraxxon.png" width="320px" alt="Fraxxon">
+                <img class="webplayer-preview" id="Ghosthunt.cas" src="media/Ghosthunt.png" width="320px" alt="Ghosthunt">
+                <img class="webplayer-preview" id="Lazy Bug.cas" src="media/Lazy Bug.png" width="320px" alt="Lazy Bug">
+                <img class="webplayer-preview" id="Vier op een rij.cas" src="media/Vier op een rij.png" width="320px" alt="Vier op een rij">
+                <img class="webplayer-preview" id="Androiden Nim.cas" src="media/Androiden Nim.png" width="320px" alt="Androiden Nim">
+                <img class="webplayer-preview" id="Tempo Typen.cas" src="media/Tempo Typen.png" width="320px" alt="Tempo Typen">
+                <img class="webplayer-preview" id="Tetris.cas" src="media/Tetris.png" width="320px" alt="Tetris">
+                <img class="webplayer-preview" id="U Hangt.cas" src="media/U Hangt.png" width="320px" alt="U Hangt">
+                <img class="webplayer-preview" id="Computer Jackpot.cas" src="media/Computer Jackpot.png" width="320px" alt="Computer Jackpot">
+                <img class="webplayer-preview" id="Doolhof.cas" src="media/Doolhof.png" width="320px" alt="Doolhof">
+                <img class="webplayer-preview" id="Macho Man.cas" src="media/Macho Man.png" width="320px" alt="Macho Man">
+              `);
+            }
+          </script>
       </div>
    </div>
 

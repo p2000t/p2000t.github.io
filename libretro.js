@@ -274,8 +274,21 @@ function startRetroArch(casFile)
    Module["canvas"] = document.getElementById("canvas");
    Module["canvas"].addEventListener("click", () => Module["canvas"].focus());
    //Module['callMain'](Module['arguments']);
-   if (casFile != null)
-      Module['callMain'](["-v", "/home/web_user/retroarch/userdata/content/downloads/" + casFile]);
+   if (casFile != null) {
+      if (casFile.startsWith('http')) {
+         // Download the file and store it in BrowserFS
+         fetch(casFile)
+            .then(response => response.arrayBuffer())
+            .then(data => {
+               const fileName = casFile.split('/').pop();
+               const filePath = uploadData(data, fileName);   
+               Module['callMain'](["-v", filePath]);
+            })
+            .catch(error => console.error('Error downloading file:', error));
+      } else {
+         Module['callMain'](["-v", "/home/web_user/retroarch/userdata/content/downloads/" + casFile]);
+      }
+   }
    else
       Module['callMain'](["-v", "--menu"]);
 
@@ -308,14 +321,26 @@ function selectFiles(files)
    }
 }
 
-function uploadData(data,name)
-{
-   var dataView = new Uint8Array(data);
-   Module.FS.createDataFile('/', name, dataView, true, false);
+// function uploadData(data,name)
+// {
+//    var dataView = new Uint8Array(data);
+//    Module.FS.createDataFile('/', name, dataView, true, false);
 
-   var data = Module.FS.readFile(name,{ encoding: 'binary' });
-   Module.FS.writeFile('/home/web_user/retroarch/userdata/content/' + name, data ,{ encoding: 'binary' });
-   Module.FS.unlink(name);
+//    var data = Module.FS.readFile(name,{ encoding: 'binary' });
+//    Module.FS.writeFile('/home/web_user/retroarch/userdata/content/' + name, data ,{ encoding: 'binary' });
+//    Module.FS.unlink(name);
+// }
+
+function uploadData(data, name) {
+   const dirPath = '/home/web_user/retroarch/userdata/content';
+   const filePath = dirPath + '/' + name;
+   try {
+      Module.FS.mkdir(dirPath);
+   } catch (e) {
+      if (e.errno !== 20) throw e; // EEXIST - directory already exists, ignore
+   }
+   Module.FS.writeFile(filePath, new Uint8Array(data), { encoding: 'binary' });
+   return filePath;
 }
 
 function switchCore(corename) {
